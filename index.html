@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Timer Design & Product reference</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="script.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div>
+		<div class="mixing-timer" id="mixing-timer-1">
+			<select class="select-product" onChange="update('mixing-timer-1')">
+				<option value="">Select a product mixing timer</option>
+				<option value="cerament-g">CERAMENT G</option>
+				<option value="cerament-v">CERAMENT V</option>
+				<option value="cerament-bvf">CERAMENT BVF</option>
+			</select>
+			<div class="select-product-label"></div>
+			<div class="timer">
+				<div class="controls">
+					<button id="playbtn-no-1" type="button" class="play" onclick="countdown('mixing-timer-1','playbtn-no-1','resetbtn-no-1')"></button>
+					<button id="resetbtn-no-1" type="button" class="reset" style="display:none"></button>
+				</div>
+				<div class="countdown">00:00</div>
+			</div>
+			<div class="progress-wrap"></div>
+		</div>
+		</div>
+		<div id="add-mixer-1">
+			<button type="button" onClick="createMixtureTimer('2','add-mixer-1')">Add another mixing timer</button>
+		</div>
+		<div id="add-mixer-2">
+			<button type="button" onClick="createMixtureTimer('3','add-mixer-2')">Add another mixing timer</button>
+		</div>
+		<div id="add-mixer-3">
+			<button type="button" onClick="createMixtureTimer('4','add-mixer-3')">Add another mixing timer</button>
+		</div>
+		<div id="add-mixer-4">
+			<button type="button" onClick="createMixtureTimer('5','add-mixer-4')">Add another mixing timer</button>
+		</div>
+
+	</div>
+
+</body>
+</html>
