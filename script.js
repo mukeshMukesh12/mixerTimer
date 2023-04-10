@@ -142,7 +142,7 @@ function countdown(wrapperId,playbtnId,resetbtnId) {
     el1.style.display = 'none'
     let minutes = selectMixer(wrapper)[selectMixer(wrapper).length - 2]['duration'];
 
-    var sec = 0, min = 0, hour = 0, progress=0;
+    var sec = 0, min = 0, hour = 0, progress=0, step='';
 var interval = setInterval(function() {
                 progress++;
                 sec++;  
@@ -156,15 +156,16 @@ var interval = setInterval(function() {
                 }
 
                 if(min === minutes) {
+
                       progress = 0;
-                        el.innerHTML = "STOP!"
+                        el.innerHTML = `Closure!`
                         el2.style.display = 'none'
-                        element1.style.display = 'inline-block'
                         clearInterval(interval);
                         return;
                     }
                 
                 for(let i=0;i<selectMixer(wrapper).length;i++) {
+                    step = selectMixer(wrapper)[i]['title'];
                     if(i !== 0) {
                         const timeduration = selectMixer(wrapper)[i]['duration']*60 - selectMixer(wrapper)[i - 1]['duration']*60;
                         if(progress <= selectMixer(wrapper)[i]['duration']*60 && progress == selectMixer(wrapper)[i - 1]['duration']*60) {
@@ -183,7 +184,7 @@ var interval = setInterval(function() {
                  
                 minText= min ? min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
                 secText= sec ? sec.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
-                el.innerHTML = minText + ':' + secText
+                el.innerHTML = minText + ':' + secText;
         }, 1000);
         el2.style.display = 'inline-block'
         el2.onclick = function() {
