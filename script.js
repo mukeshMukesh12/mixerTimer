@@ -143,80 +143,77 @@ function countdown(wrapperId,playbtnId,resetbtnId) {
     let minutes = selectMixer(wrapper)[selectMixer(wrapper).length - 2]['duration'];
 
     var sec = 0, min = 0, hour = 0, progress=0, step='';
-var interval = setInterval(function() {
-                progress++;
-                sec++;  
-                if(sec==60) {
-                    sec = 0;
-                    min++;
-                }
-                if(min == 60) {
-                    min = 0;
-                    hour++
-                }
+    var interval = setInterval(function() {
+			progress++;
+			sec++;  
+			if(sec==60) {
+					sec = 0;
+					min++;
+			}
+			if(min == 60) {
+					min = 0;
+					hour++
+			}
 
-                if(min === minutes) {
+			if(min === minutes) {
 
-                      progress = 0;
-                        el.innerHTML = `Closure!`
-                        el2.style.display = 'none'
-                        clearInterval(interval);
-                        return;
-                    }
-                
-                for(let i=0;i<selectMixer(wrapper).length;i++) {
-                    step = selectMixer(wrapper)[i]['title'];
-                    if(i !== 0) {
-                        const timeduration = selectMixer(wrapper)[i]['duration']*60 - selectMixer(wrapper)[i - 1]['duration']*60;
-                        if(progress <= selectMixer(wrapper)[i]['duration']*60 && progress == selectMixer(wrapper)[i - 1]['duration']*60) {
-                        wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove ${timeduration}s`
-                        wrapper.querySelector(`.progressbar${i} div`).style.width = '100%'
-                        wrapper.querySelector(`.progressbar${eval(i)} div`).classList.add("completed"); 
-                        }
-                    }
-                    else {
-                        wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove ${selectMixer(wrapper)[i]['duration']*60}s`
-                        wrapper.querySelector(`.progressbar${i} div`).style.width = '100%'
-                    }
-                    
-                    
-                }
-                 
-                minText= min ? min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
-                secText= sec ? sec.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
-                el.innerHTML = minText + ':' + secText;
-        }, 1000);
-        el2.style.display = 'inline-block'
-        el2.onclick = function() {
-            for(let i=0;i<selectMixer(wrapper).length;i++) {
-                wrapper.querySelector(`.progressbar${i} div`).style.width = '0'
-                wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove1 0s`
-            }
-            
-            el2.style.display = 'none'
-            el.innerHTML = "00:00"
-            el1.style.display = 'inline-block'
-            clearInterval(interval);
-        }
+					progress = 0;
+							el.innerHTML = `Closure!`
+							el2.style.display = 'none'
+							clearInterval(interval);
+							return;
+					}
+			
+			for(let i=0;i<selectMixer(wrapper).length;i++) {
+					step = selectMixer(wrapper)[i]['title'];
+					if(i !== 0) {
+							const timeduration = selectMixer(wrapper)[i]['duration']*60 - selectMixer(wrapper)[i - 1]['duration']*60;
+							if(progress <= selectMixer(wrapper)[i]['duration']*60 && progress == selectMixer(wrapper)[i - 1]['duration']*60) {
+							wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove ${timeduration}s`
+							wrapper.querySelector(`.progressbar${i} div`).style.width = '100%'
+							wrapper.querySelector(`.progressbar${eval(i)} div`).classList.add("completed"); 
+							}
+					}
+					else {
+							wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove ${selectMixer(wrapper)[i]['duration']*60}s`
+							wrapper.querySelector(`.progressbar${i} div`).style.width = '100%'
+					}	
+			}
+				minText= min ? min.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
+				secText= sec ? sec.toLocaleString('en-US', {minimumIntegerDigits: 2, useGrouping:false}): '00';
+				el.innerHTML = minText + ':' + secText;
+      }, 1000);
+			el2.style.display = 'inline-block'
+			el2.onclick = function() {
+					for(let i=0;i<selectMixer(wrapper).length;i++) {
+							wrapper.querySelector(`.progressbar${i} div`).style.width = '0'
+							wrapper.querySelector(`.progressbar${i} div`).style.animation = `mymove1 0s`
+					}
+					
+					el2.style.display = 'none'
+					el.innerHTML = "00:00"
+					el1.style.display = 'inline-block'
+					clearInterval(interval);
+			}
 }
 //creating progressbars
 function createProgress(element,array) {
-array.map((el,index)=>{
-        let div = document.createElement("div")
-        let progress = document.createElement("div");  
-        progress.className = `progressbar progressbar${index}`
-        let bar = document.createElement("div");
-        bar.className = 'bar'
-        progress.appendChild(bar)
-        let title = document.createElement('p')
-        title.className = 'title'
-        title.innerHTML = el.title
-        let duration = document.createElement('p')
-        duration.className = 'duration'
-        duration.innerHTML = (el.duration < 1) ? el.duration * 60 + " sec": `~${el.duration}min` 
-        div.appendChild(progress)
-        div.appendChild(title)
-        div.appendChild(duration)
-        element.append(div)
-    })
+	array.map((el,index)=>{
+		let div = document.createElement("div")
+		let progress = document.createElement("div");  
+		progress.className = `progressbar progressbar${index}`
+		let bar = document.createElement("div");
+		bar.className = 'bar'
+		progress.appendChild(bar)
+		let title = document.createElement('p')
+		title.className = 'title'
+		title.innerHTML = el.title
+		let duration = document.createElement('p')
+		duration.className = 'duration'
+		duration.innerHTML = (el.duration < 1) ? el.duration * 60 + " sec": `~${el.duration}min` 
+		div.appendChild(progress)
+		div.appendChild(title)
+		div.appendChild(duration)
+		element.append(div)
+	})
 }

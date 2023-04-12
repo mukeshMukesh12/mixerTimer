@@ -3,6 +3,9 @@
     max-width: 375px;
     margin: 20px auto;
 }
+* {
+  box-sizing: border-box;
+}
 .mixing-timer select,
 .container > div > button {
     width: 100%;
