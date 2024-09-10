@@ -66,7 +66,7 @@ function createMixtureTimer(ID, element) {
 
   // Create options for the select element
   const options = [
-    { value: "", text: "Select a product mixing timer" },
+    { value: "", text: "Select a Timer for Perfectly Boiled Eggs" },
     { value: "soft-boiled-egg", text: "Half Boiled Egg" },
     { value: "medium-boiled-egg", text: "Medium Boiled Egg" },
     { value: "hard-boiled-egg", text: "Full Boiled Egg" },
